@@ -5,7 +5,7 @@ package wuchaofei.top;
  * Created by cofco on 2018/1/18.
  */
 
-public class CommandExecutor extends wuchaofei.top.Executor {
+public class AdbExecutor extends wuchaofei.top.Executor {
     /**
      * 模拟点击
      */
