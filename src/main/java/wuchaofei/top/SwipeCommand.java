@@ -7,8 +7,8 @@ package wuchaofei.top;
 
 public class SwipeCommand implements Command, Cloneable{
     int x=0, y=0, x1=0, y1=0;
-    CommandExecutor executor;
-    public SwipeCommand(int x, int y, int x1,int y1,CommandExecutor executor){
+    AdbExecutor executor;
+    public SwipeCommand(int x, int y, int x1,int y1,AdbExecutor executor){
         this.x=x;
         this.y=y;
         this.x1=x1;

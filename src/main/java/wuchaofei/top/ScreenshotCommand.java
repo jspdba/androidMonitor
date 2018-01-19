@@ -5,8 +5,8 @@ package wuchaofei.top;
  */
 
 public class ScreenshotCommand implements Command {
-    CommandExecutor executor;
-    public ScreenshotCommand(CommandExecutor executor){
+    AdbExecutor executor;
+    public ScreenshotCommand(AdbExecutor executor){
         this.executor= executor;
     }
 

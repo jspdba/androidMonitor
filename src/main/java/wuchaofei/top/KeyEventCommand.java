@@ -189,9 +189,9 @@ package wuchaofei.top;
  */
 
 public class KeyEventCommand implements Command {
-    CommandExecutor executor;
+    AdbExecutor executor;
     int key = 0;
-    public KeyEventCommand(CommandExecutor executor){
+    public KeyEventCommand(AdbExecutor executor){
         this.executor = executor;
     }
 

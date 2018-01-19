@@ -6,9 +6,9 @@ package wuchaofei.top;
  */
 
 public class PowerCommand implements Command, Cloneable{
-    CommandExecutor executor;
+    AdbExecutor executor;
 
-    public PowerCommand(CommandExecutor executor){
+    public PowerCommand(AdbExecutor executor){
         this.executor = executor;
     }
 

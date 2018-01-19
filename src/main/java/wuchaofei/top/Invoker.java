@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Invoker {
     final Map<String, Command> commandMap = new HashMap<String, Command>();
-    CommandExecutor executor;
+    AdbExecutor executor;
     ClickCommand clickCommand;
     SwipeCommand swipeCommand;
     PowerCommand powerCommand;
@@ -29,7 +29,7 @@ public class Invoker {
 
     public Invoker(){
         // 点击的位置坐标
-        executor = new CommandExecutor();
+        executor = new AdbExecutor();
         clickCommand =  new ClickCommand(x,y, executor);
         swipeCommand =  new SwipeCommand(x,y+instance*2,x, y-2*instance, executor);
         powerCommand =  new PowerCommand(executor);

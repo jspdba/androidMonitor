@@ -7,9 +7,9 @@ package wuchaofei.top;
 
 public class ClickCommand implements wuchaofei.top.Command, Cloneable{
     int x=0, y=0;
-    wuchaofei.top.CommandExecutor executor;
+    AdbExecutor executor;
 
-    public ClickCommand(int x,int y, wuchaofei.top.CommandExecutor executor){
+    public ClickCommand(int x,int y, AdbExecutor executor){
         this.x=x;
         this.y=y;
         this.executor = executor;
