@@ -1,7 +1,6 @@
 package wuchaofei.top;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 控制器
@@ -14,10 +13,12 @@ public class Invoker {
     ClickCommand clickCommand;
     SwipeCommand swipeCommand;
     PowerCommand powerCommand;
+
     /**
-     * 200ms点击一次
+     * // 1小时的毫秒设定
+     * time 毫秒点击一次
      */
-    private int time = 300;
+    private int timeInterval = 50;
     private int x=820;
     private int y=820;
     private int instance = 362;
@@ -29,7 +30,7 @@ public class Invoker {
     public Invoker(){
         // 点击的位置坐标
         executor = new CommandExecutor();
-        clickCommand =  new ClickCommand(x,y + instance*3, executor);
+        clickCommand =  new ClickCommand(x,y, executor);
         swipeCommand =  new SwipeCommand(x,y+instance*2,x, y-2*instance, executor);
         powerCommand =  new PowerCommand(executor);
 //        this.commandMap.put("click command", clickCommand);
@@ -47,24 +48,25 @@ public class Invoker {
         }
     }
 
-    public void timerExecute(){
-        stop = false;
-        for(;;){
-            if(!stop){
-//                clickCommand.execute();
+    public void timerExecute(int hour, int min, int sec){
+        Calendar startDate = Calendar.getInstance();
+
+        //设置开始执行的时间为 某年-某月-某月 00:00:00
+        startDate.set(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.get(Calendar.DATE), hour, min, sec);
+
+        // 定时器实例
+        Timer t = new Timer();
+
+        t.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                clickCommand.execute();
 //                swipeCommand.execute();
-                powerCommand.execute();
-                stop = true;
-            }else{
-                break;
+//                powerCommand.execute();
             }
 
-            try {
-                Thread.sleep(time);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        }, startDate.getTime(), timeInterval);
     }
 
     public void execute(String key){
