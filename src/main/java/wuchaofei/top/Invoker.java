@@ -11,8 +11,8 @@ import java.util.Map;
 public class Invoker {
     final Map<String, Command> commandMap = new HashMap<String, Command>();
     CommandExecutor executor;
-    Command clickCommand;
-    Command swipeCommand;
+    ClickCommand clickCommand;
+    SwipeCommand swipeCommand;
     /**
      * 200ms点击一次
      */
@@ -29,8 +29,8 @@ public class Invoker {
         // 点击的位置坐标
         executor = new CommandExecutor();
         clickCommand =  new ClickCommand(x,y + instance*3, executor);
-//        swipeCommand =  new SwipeCommand(x,y+instance*2,x, y-2*instance, executor);
-        this.commandMap.put("click command", clickCommand);
+        swipeCommand =  new SwipeCommand(x,y+instance*2,x, y-2*instance, executor);
+//        this.commandMap.put("click command", clickCommand);
 //        Command screenshotCommand =  new ScreenshotCommand(executor);
 //        commandMap.put("screenshot command", screenshotCommand);
     }
@@ -49,22 +49,9 @@ public class Invoker {
         stop = false;
         for(;;){
             if(!stop){
-//                swipeCommand.execute();
-                clickCommand.execute();
-//                clickCommand = ((ClickCommand)clickCommand).clone();
-//                ((ClickCommand) clickCommand).setX(x);
-//                ((ClickCommand) clickCommand).setY(y+instance*1);
 //                clickCommand.execute();
-//                clickCommand = ((ClickCommand)clickCommand).clone();
-//                ((ClickCommand) clickCommand).setX(x);
-//                ((ClickCommand) clickCommand).setY(y+instance*2);
-//                clickCommand.execute();
-//                clickCommand = ((ClickCommand)clickCommand).clone();
-//                ((ClickCommand) clickCommand).setX(x);
-//                ((ClickCommand) clickCommand).setY(y+instance*3);
-//                clickCommand.execute();
-
-//                stop = true;
+                swipeCommand.execute();
+                stop = true;
             }else{
                 break;
             }
