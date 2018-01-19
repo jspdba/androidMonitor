@@ -47,4 +47,21 @@ public class CommandExecutor extends wuchaofei.top.Executor {
             e.printStackTrace();
         }
     }
+    public void pressKey(String key){
+        try {
+//            callCmd(ADB_PATH + "adb shell input keyevent --longpress " + key);
+            callCmd(ADB_PATH + "adb shell input keyevent " + key);
+            System.out.println("长按系统按键...");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void longPressKey(String key){
+        try {
+            callCmd(ADB_PATH + "adb shell input keyevent --longpress " + key);
+            System.out.println("长按系统按键...");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

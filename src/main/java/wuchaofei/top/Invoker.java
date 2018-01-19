@@ -13,6 +13,7 @@ public class Invoker {
     CommandExecutor executor;
     ClickCommand clickCommand;
     SwipeCommand swipeCommand;
+    PowerCommand powerCommand;
     /**
      * 200ms点击一次
      */
@@ -30,6 +31,7 @@ public class Invoker {
         executor = new CommandExecutor();
         clickCommand =  new ClickCommand(x,y + instance*3, executor);
         swipeCommand =  new SwipeCommand(x,y+instance*2,x, y-2*instance, executor);
+        powerCommand =  new PowerCommand(executor);
 //        this.commandMap.put("click command", clickCommand);
 //        Command screenshotCommand =  new ScreenshotCommand(executor);
 //        commandMap.put("screenshot command", screenshotCommand);
@@ -50,7 +52,8 @@ public class Invoker {
         for(;;){
             if(!stop){
 //                clickCommand.execute();
-                swipeCommand.execute();
+//                swipeCommand.execute();
+                powerCommand.execute();
                 stop = true;
             }else{
                 break;
