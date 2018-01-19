@@ -33,7 +33,9 @@ public class Invoker {
         clickCommand =  new ClickCommand(x,y, executor);
         swipeCommand =  new SwipeCommand(x,y+instance*2,x, y-2*instance, executor);
         powerCommand =  new PowerCommand(executor);
-//        this.commandMap.put("click command", clickCommand);
+        this.commandMap.put("click command", clickCommand);
+        this.commandMap.put("click command", swipeCommand);
+        this.commandMap.put("click command", powerCommand);
 //        Command screenshotCommand =  new ScreenshotCommand(executor);
 //        commandMap.put("screenshot command", screenshotCommand);
     }
@@ -53,7 +55,7 @@ public class Invoker {
 
         //设置开始执行的时间为 某年-某月-某月 00:00:00
         startDate.set(startDate.get(Calendar.YEAR), startDate.get(Calendar.MONTH), startDate.get(Calendar.DATE), hour, min, sec);
-
+        startDate.set(Calendar.MILLISECOND, 0);
         // 定时器实例
         Timer t = new Timer();
 
@@ -61,9 +63,10 @@ public class Invoker {
 
             @Override
             public void run() {
-                clickCommand.execute();
+//                clickCommand =  new ClickCommand(x,y + 2*instance, executor);
+//                clickCommand.execute();
 //                swipeCommand.execute();
-//                powerCommand.execute();
+                powerCommand.execute();
             }
 
         }, startDate.getTime(), timeInterval);
@@ -71,5 +74,24 @@ public class Invoker {
 
     public void execute(String key){
         commandMap.get(key).execute();
+    }
+
+    public void pressePowerKey(){
+        powerCommand.execute();
+    }
+
+    public void powerOff(){
+        powerCommand.execute();
+    }
+
+    public void unLockScreen(){
+        powerCommand.execute();
+        swipeCommand =  new SwipeCommand(300,1000,300, 100, executor);
+        swipeCommand.execute();
+
+//        240 1020
+//        540 1020
+//        540 1320
+//        840 1320
     }
 }
