@@ -2,9 +2,6 @@ package wuchaofei.top;
 
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 命令执行者对象
  * Created by cofco on 2018/1/18.
