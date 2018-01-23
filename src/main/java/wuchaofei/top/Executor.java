@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
  * Created by cofco on 2018/1/18.
  */
 
-public abstract class Executor {
+abstract class Executor {
     public static String ADB_PATH  = "d:/zhongliang/adb/";
 
     protected void callCmd(String ...cmd) throws Exception{

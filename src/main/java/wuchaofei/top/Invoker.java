@@ -64,10 +64,7 @@ public class Invoker {
 
             @Override
             public void run() {
-//                clickCommand =  new ClickCommand(x,y + 2*instance, executor);
-//                clickCommand.execute();
-//                swipeCommand.execute();
-                powerCommand.execute();
+                runBatch();
             }
 
         }, startDate.getTime(), timeInterval);
@@ -92,5 +89,9 @@ public class Invoker {
 
     public String catLcdBackLight(){
         return executor.catLcdBackLight();
+    }
+
+    public String runBatch(){
+        return executor.runBatch(new String[]{"D:/zhongliang/androidMonitor/ClickBatch.bat",""+x,""+(y+instance)});
     }
 }

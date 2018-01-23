@@ -92,4 +92,15 @@ public class AdbExecutor extends Executor {
         }
         return result;
     }
+
+    public String runBatch(String ...args){
+        String result=null;
+        try {
+            result = callCmd(commandTemplate.runBatch(args));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
 }

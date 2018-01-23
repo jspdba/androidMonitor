@@ -31,3 +31,6 @@ adb命令
 [android测试之getevent/sendevent](http://blog.51cto.com/sunzeduo/1294839)
 [Android 内核 MT 笔记 测试数据](https://www.hongweipeng.com/index.php/archives/972/)
 [Android 屏幕操作原理](http://blog.csdn.net/crasheye/article/details/51321096)
+
+
+cmd.exe /C start /b D:\\test.bat

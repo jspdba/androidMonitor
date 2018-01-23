@@ -1,5 +1,7 @@
 package wuchaofei.top;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,5 +40,14 @@ public class CommandTemplate extends AbstractCommandTemplate {
 
     public void setIfOpenPower(boolean ifOpenPower) {
         this.ifOpenPower = ifOpenPower;
+    }
+
+    /**
+     * 执行批处理命令
+     * @param args
+     * @return
+     */
+    public String runBatch(String ...args){
+        return StringUtils.join(args, " ");
     }
 }
