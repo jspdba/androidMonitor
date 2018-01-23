@@ -12,7 +12,7 @@ abstract class AbstractCommandTemplate {
     static List<String> unLockCommands = new ArrayList<String>();
     private List<Point> points;
     // 默认需要先点亮屏幕
-    static boolean openPower = true;
+    private boolean openPower = true;
 
     static String preffix = "adb shell sendevent /dev/input/event5 ";
 
@@ -128,7 +128,7 @@ abstract class AbstractCommandTemplate {
      * @return
      */
     public final String keyPress(String key){
-        return "adb input keyevent " + key;
+        return "adb shell input keyevent " + key;
     }
 
     /**
@@ -137,7 +137,7 @@ abstract class AbstractCommandTemplate {
      * @return
      */
     public final String keyPressLong(String key){
-        return "adb input keyevent --longpress" + key;
+        return "adb shell input keyevent --longpress" + key;
     }
 
     /**
@@ -163,5 +163,13 @@ abstract class AbstractCommandTemplate {
 
     public final String swipe(int x, int y, int x1, int y1){
         return "adb shell input swipe "+x+" "+y+" "+x1+" "+y1;
+    }
+
+    /**
+     * 查看屏幕是否是亮屏，亮屏>0
+     * @return
+     */
+    public final String catLcdBackLight(){
+        return "adb shell cat sys/class/leds/lcd-backlight/brightness";
     }
 }

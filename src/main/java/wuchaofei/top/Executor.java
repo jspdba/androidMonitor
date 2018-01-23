@@ -31,31 +31,22 @@ public abstract class Executor {
             process.destroy();
         }
     }
-    protected void callCmd(String command) throws Exception{
+    protected String callCmd(String command) throws Exception{
         System.out.println(command);
-        Process process = Runtime.getRuntime().exec(new String[]{"cmd", "/C", command},null, new File(ADB_PATH));
-        /*InputStream input = process.getInputStream();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(input));
-        String line;
-        while ((line = reader.readLine())!= null) {
-            System.out.println(line);
-        }
-        reader.close();
-        process.waitFor();
-        if(process!=null){
-            process.destroy();
-        }*/
+        Process process = Runtime.getRuntime().exec(new String[]{"cmd.exe", "/C", command},null, new File(ADB_PATH));
         BufferedReader stdoutReader = new BufferedReader(new InputStreamReader(process.getInputStream(),"GBK"));
         BufferedReader stderrReader = new BufferedReader(new InputStreamReader(process.getErrorStream(),"GBK"));
-        String line;
+        String line, result = "";
+
         while ((line = stdoutReader.readLine()) != null) {
             System.out.println(line);
+            result += line;
         }
         while ((line = stderrReader.readLine()) != null) {
             System.out.println(line);
         }
-        int exitVal = process.waitFor();
-        System.out.println(exitVal);
+        process.waitFor();
         process.destroy();
+        return result;
     }
 }

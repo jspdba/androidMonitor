@@ -10,5 +10,7 @@ public class Main {
 //        invoker.pressePowerKey();
 //        invoker.timerExecute(17,59,59);
         invoker.unLockScreen();
+//        invoker.pressePowerKey();
+//        System.out.println(invoker.catLcdBackLight());
     }
 }

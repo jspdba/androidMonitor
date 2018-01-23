@@ -11,6 +11,7 @@ import java.util.List;
 public class CommandTemplate extends AbstractCommandTemplate {
     private static CommandTemplate commandTemplate = new CommandTemplate();
     private CommandTemplate(){}
+    private boolean ifOpenPower = true;
 
     public static CommandTemplate getInstance(){
         return commandTemplate;
@@ -27,11 +28,15 @@ public class CommandTemplate extends AbstractCommandTemplate {
 
     @Override
     protected boolean ifOpenPower() {
-        return true;
+        return ifOpenPower;
     }
 
     @Override
     protected String setPreffix() {
         return super.setPreffix();
+    }
+
+    public void setIfOpenPower(boolean ifOpenPower) {
+        this.ifOpenPower = ifOpenPower;
     }
 }

@@ -86,11 +86,11 @@ public class Invoker {
     }
 
     public void unLockScreen(){
-//        powerCommand.execute();
-//        swipeCommand =  new SwipeCommand(300,1000,300, 100, executor);
-//        swipeCommand.execute();
-
         unLockCommand = new UnLockCommand(executor);
         unLockCommand.execute();
+    }
+
+    public String catLcdBackLight(){
+        return executor.catLcdBackLight();
     }
 }

@@ -51,7 +51,7 @@ public class AdbExecutor extends Executor {
         try {
 //            callCmd("adb shell input keyevent --longpress " + key);
             super.callCmd(commandTemplate.keyPress(key));
-            System.out.println("长按系统按键...");
+            System.out.println("按系统按键...");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,13 +66,33 @@ public class AdbExecutor extends Executor {
     }
 
     public void unLock(){
+        boolean isLight = false;
+        String light = catLcdBackLight().trim();
+        if(!"0".equals(light)){
+            isLight = true;
+        }
+        if(!isLight){
+            commandTemplate.setIfOpenPower(true);
+            try {
+                System.out.println("解锁屏幕...");
+                callCmd(StringUtils.join(commandTemplate.unlock()," && "));
+                System.out.println("解锁屏幕完成");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 查看屏幕是不是亮的
+     */
+    public String catLcdBackLight(){
+        String result=null;
         try {
-            System.out.println("解锁屏幕...");
-            List<String> cmdArray = new ArrayList<String>(commandTemplate.unlock());
-            callCmd(StringUtils.join(cmdArray," && "));
-            System.out.println("解锁屏幕完成");
+            result = callCmd(commandTemplate.catLcdBackLight());
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return result;
     }
 }
