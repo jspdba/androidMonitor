@@ -13,6 +13,7 @@ public class Invoker {
     ClickCommand clickCommand;
     SwipeCommand swipeCommand;
     PowerCommand powerCommand;
+    UnLockCommand unLockCommand;
 
     /**
      * // 1小时的毫秒设定
@@ -85,13 +86,11 @@ public class Invoker {
     }
 
     public void unLockScreen(){
-        powerCommand.execute();
-        swipeCommand =  new SwipeCommand(300,1000,300, 100, executor);
-        swipeCommand.execute();
+//        powerCommand.execute();
+//        swipeCommand =  new SwipeCommand(300,1000,300, 100, executor);
+//        swipeCommand.execute();
 
-//        240 1020
-//        540 1020
-//        540 1320
-//        840 1320
+        unLockCommand = new UnLockCommand(executor);
+        unLockCommand.execute();
     }
 }

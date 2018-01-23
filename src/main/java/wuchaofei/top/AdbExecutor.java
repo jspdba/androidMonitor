@@ -1,20 +1,25 @@
 package wuchaofei.top;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 命令执行者对象
  * Created by cofco on 2018/1/18.
  */
 
-public class AdbExecutor extends wuchaofei.top.Executor {
+public class AdbExecutor extends Executor {
+    private CommandTemplate commandTemplate = CommandTemplate.getInstance();
     /**
      * 模拟点击
      */
-    public static final String ADB_PATH  = "d:/zhongliang/adb/";
     public static final String SAVE_PATH = "d:/photo/m.png";
 
     public void click(int x, int y) {
         try {
-            callCmd(ADB_PATH + "adb shell input tap "+x+" "+y);
+            super.callCmd(commandTemplate.click(x,y));
             System.out.println("屏幕被点击了！");
         } catch (Exception e) {
             e.printStackTrace();
@@ -22,17 +27,12 @@ public class AdbExecutor extends wuchaofei.top.Executor {
     }
 
     public void click(int key) {
-        try {
-            callCmd(ADB_PATH + "adb input keyevent " + key);
-            System.out.println("屏幕被点击了！");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        pressKey("" + key);
     }
 
     public  void screenshot(){
         try {
-            callCmd(ADB_PATH + "adb shell /system/bin/screencap -p /sdcard/screenshot.png", ADB_PATH+"adb pull /sdcard/screenshot.png " + SAVE_PATH);
+            super.callCmd(commandTemplate.screenshot(SAVE_PATH));
             System.out.println("截图成功！"+SAVE_PATH);
         } catch (Exception e) {
             e.printStackTrace();
@@ -41,7 +41,7 @@ public class AdbExecutor extends wuchaofei.top.Executor {
 
     public  void swipe(int x, int y,int x1, int y1){
         try {
-            callCmd(ADB_PATH + "adb shell input swipe "+x+" "+y+" "+x1+" "+y1);
+            super.callCmd(commandTemplate.swipe(x,y,x1,y1));
             System.out.println("滑动...");
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,8 +49,8 @@ public class AdbExecutor extends wuchaofei.top.Executor {
     }
     public void pressKey(String key){
         try {
-//            callCmd(ADB_PATH + "adb shell input keyevent --longpress " + key);
-            callCmd(ADB_PATH + "adb shell input keyevent " + key);
+//            callCmd("adb shell input keyevent --longpress " + key);
+            super.callCmd(commandTemplate.keyPress(key));
             System.out.println("长按系统按键...");
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,8 +58,19 @@ public class AdbExecutor extends wuchaofei.top.Executor {
     }
     public void longPressKey(String key){
         try {
-            callCmd(ADB_PATH + "adb shell input keyevent --longpress " + key);
+            callCmd(commandTemplate.keyPressLong(key));
             System.out.println("长按系统按键...");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void unLock(){
+        try {
+            System.out.println("解锁屏幕...");
+            List<String> cmdArray = new ArrayList<String>(commandTemplate.unlock());
+            callCmd(StringUtils.join(cmdArray," && "));
+            System.out.println("解锁屏幕完成");
         } catch (Exception e) {
             e.printStackTrace();
         }
