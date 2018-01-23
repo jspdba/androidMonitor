@@ -18,6 +18,12 @@
     adb shell sendevent /dev/input/event0 0 0 0   //同步
 
 ```
+adb命令
+    查看设备事件定义
+    adb shell cat /proc/bus/input/devices
+    查看某设备实时事件
+    adb shell getevent -l /dev/input/event5
+    
 >https://www.jianshu.com/p/72f32fd571c0
 参考
 [adb shell 模拟发送按键](http://blog.sina.com.cn/s/blog_8acf1be10102w01x.html)
