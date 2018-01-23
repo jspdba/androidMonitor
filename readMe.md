@@ -19,10 +19,9 @@
 
 ```
 >https://www.jianshu.com/p/72f32fd571c0
-
-240 1020
-540 1020
-540 1320
-840 1320
-
-adb shell getevent /dev/input/event5
+参考
+[adb shell 模拟发送按键](http://blog.sina.com.cn/s/blog_8acf1be10102w01x.html)
+[Android跨进程模拟触屏事件(sendevent)](http://azard.me/blog/2015/06/13/android-cross-app-touch-event-injection/)
+[android测试之getevent/sendevent](http://blog.51cto.com/sunzeduo/1294839)
+[Android 内核 MT 笔记 测试数据](https://www.hongweipeng.com/index.php/archives/972/)
+[Android 屏幕操作原理](http://blog.csdn.net/crasheye/article/details/51321096)
