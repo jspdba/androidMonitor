@@ -1,4 +1,6 @@
-package wuchaofei.top;
+package wuchaofei.top.template;
+
+import wuchaofei.top.Point;
 
 import java.util.ArrayList;
 import java.util.List;

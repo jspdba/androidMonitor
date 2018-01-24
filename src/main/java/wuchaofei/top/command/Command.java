@@ -1,4 +1,4 @@
-package wuchaofei.top;
+package wuchaofei.top.command;
 
 /**
  * 命令接口

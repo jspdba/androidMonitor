@@ -1,5 +1,8 @@
 package wuchaofei.top;
 
+import wuchaofei.top.command.*;
+import wuchaofei.top.executor.AdbExecutor;
+
 import java.util.*;
 
 /**
@@ -8,49 +11,28 @@ import java.util.*;
  */
 
 public class Invoker {
-    final Map<String, Command> commandMap = new HashMap<String, Command>();
     AdbExecutor executor;
-    ClickCommand clickCommand;
-    SwipeCommand swipeCommand;
-    PowerCommand powerCommand;
-    UnLockCommand unLockCommand;
 
     /**
      * // 1小时的毫秒设定
      * time 毫秒点击一次
      */
-    private int timeInterval = 50;
+    private int timeInterval = 1;
     private int x=820;
     private int y=820;
     private int instance = 362;
-    /**
-     * 单线程不考虑同步问题
-     */
-    private boolean stop = true;
 
     public Invoker(){
         // 点击的位置坐标
         executor = new AdbExecutor();
-        clickCommand =  new ClickCommand(x,y, executor);
-        swipeCommand =  new SwipeCommand(x,y+instance*2,x, y-2*instance, executor);
-        powerCommand =  new PowerCommand(executor);
-        this.commandMap.put("click command", clickCommand);
-        this.commandMap.put("click command", swipeCommand);
-        this.commandMap.put("click command", powerCommand);
-//        Command screenshotCommand =  new ScreenshotCommand(executor);
-//        commandMap.put("screenshot command", screenshotCommand);
     }
 
-    public void setCommand(String name, Command command){
-        commandMap.put(name, command);
-    }
-
-    public void execute(){
-        for (Map.Entry<String, Command> commands : commandMap.entrySet()) {
-            commands.getValue().execute();
-        }
-    }
-
+    /**
+     * 定时执行
+     * @param hour
+     * @param min
+     * @param sec
+     */
     public void timerExecute(int hour, int min, int sec){
         Calendar startDate = Calendar.getInstance();
 
@@ -70,28 +52,51 @@ public class Invoker {
         }, startDate.getTime(), timeInterval);
     }
 
-    public void execute(String key){
-        commandMap.get(key).execute();
-    }
-
-    public void pressePowerKey(){
+    /**
+     * 点亮屏幕
+     */
+    public void powerOn(){
+        PowerCommand powerCommand=new PowerCommand(executor);
         powerCommand.execute();
     }
 
+    /**
+     * 关掉屏幕
+     */
     public void powerOff(){
+        PowerCommand powerCommand=new PowerCommand(executor);
         powerCommand.execute();
     }
 
+    /**
+     * 解锁屏幕
+     */
     public void unLockScreen(){
-        unLockCommand = new UnLockCommand(executor);
+        UnLockCommand unLockCommand = new UnLockCommand(executor);
         unLockCommand.execute();
     }
 
+    /**
+     * 获取屏幕亮度
+     * @return
+     */
     public String catLcdBackLight(){
         return executor.catLcdBackLight();
     }
 
+    /**
+     * 执行批处理命令
+     * @return
+     */
     public String runBatch(){
         return executor.runBatch(new String[]{"D:/zhongliang/androidMonitor/ClickBatch.bat",""+x,""+(y+instance)});
+    }
+
+    /**
+     * 执行截图命令
+     */
+    public void screenShot(){
+        ScreenshotCommand screenshotCommand=new ScreenshotCommand(executor);
+        screenshotCommand.execute();
     }
 }

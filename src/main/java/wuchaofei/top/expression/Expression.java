@@ -1,10 +1,10 @@
-package wuchaofei.top;
+package wuchaofei.top.expression;
 
 /**
  * Created by cofco on 2018/1/23.
  */
 
-abstract class Expression {
+public abstract class Expression {
     static int EV_SYN = 0;
     static int EV_KEY = 1;
     static int EV_ABS = 3;
@@ -17,5 +17,5 @@ abstract class Expression {
     static int ABS_MT_PRESSURE = 58;
     static int BTN_TOUCH = 330;
 
-    abstract String interpret(String context);
+    public abstract String interpret(String context);
 }

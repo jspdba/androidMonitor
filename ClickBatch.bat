@@ -7,6 +7,6 @@ echo the %time% time
 Wscript D:/zhongliang/androidMonitor/sleep.vbs
 echo %1% %2%
 adb shell input tap "%1" "%2"
-if %time% lss 5 goto continue
+if %time% lss 120 goto continue
 rem ************end
 echo over

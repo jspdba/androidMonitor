@@ -1,5 +1,10 @@
 package wuchaofei.top;
 
+import wuchaofei.top.expression.EvABSExpression;
+import wuchaofei.top.expression.EvKEYExpression;
+import wuchaofei.top.expression.EvSYNExpression;
+import wuchaofei.top.expression.Expression;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +13,7 @@ import java.util.List;
  * 产生touch 事件
  * Created by cofco on 2018/1/23.
  */
-public class TouchGenerator extends Expression{
+public class TouchGenerator extends Expression {
     private static final List<Expression> expressionList = new ArrayList<Expression>();
     static {
         expressionList.add(new EvABSExpression());

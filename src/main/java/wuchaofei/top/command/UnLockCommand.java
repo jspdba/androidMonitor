@@ -1,4 +1,6 @@
-package wuchaofei.top;
+package wuchaofei.top.command;
+
+import wuchaofei.top.executor.AdbExecutor;
 
 /**
  * 点击命令对象

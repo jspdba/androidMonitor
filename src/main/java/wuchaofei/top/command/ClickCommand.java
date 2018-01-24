@@ -1,26 +1,27 @@
-package wuchaofei.top;
+package wuchaofei.top.command;
+
+import wuchaofei.top.executor.AdbExecutor;
 
 /**
  * 点击命令对象
  * Created by cofco on 2018/1/18.
  */
 
-public class SwipeCommand implements Command, Cloneable{
-    int x=0, y=0, x1=0, y1=0;
+public class ClickCommand implements Command, Cloneable{
+    int x=0, y=0;
     AdbExecutor executor;
-    public SwipeCommand(int x, int y, int x1,int y1,AdbExecutor executor){
+
+    public ClickCommand(int x,int y, AdbExecutor executor){
         this.x=x;
         this.y=y;
-        this.x1=x1;
-        this.y1 = y1;
         this.executor = executor;
     }
 
     @Override
-    public SwipeCommand clone() {
-        SwipeCommand clickCommand = null;
+    public ClickCommand clone() {
+        ClickCommand clickCommand = null;
         try {
-            clickCommand = (SwipeCommand)super.clone();
+            clickCommand = (ClickCommand)super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
         }
@@ -29,7 +30,7 @@ public class SwipeCommand implements Command, Cloneable{
 
     @Override
     public void execute() {
-        executor.swipe(x,y,x1,y1);
+        executor.click(x,y);
     }
 
     public int getX() {
