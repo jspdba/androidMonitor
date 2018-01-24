@@ -17,7 +17,7 @@ public class Invoker {
      * // 1小时的毫秒设定
      * time 毫秒点击一次
      */
-    private int timeInterval = 1;
+    private int timeInterval = 1000*60;
     private int x=820;
     private int y=820;
     private int instance = 362;

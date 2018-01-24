@@ -10,12 +10,12 @@ public class Main {
         // 解锁屏幕
 //        invoker.unLockScreen();
 //        invoker.screenShot();
-//        invoker.runBatch();
-        invoker.timerExecute(9,59,59);
 //        invoker.pressePowerKey();
 //        invoker.timerExecute(17,59,59);
 //        invoker.pressePowerKey();
 //        System.out.println(invoker.catLcdBackLight());
 
+//        invoker.timerExecute(10,04,59);
+        invoker.runBatch();
     }
 }

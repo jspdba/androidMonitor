@@ -1,1 +1,1 @@
-WScript.sleep 50
+WScript.sleep 1
